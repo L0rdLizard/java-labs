@@ -11,6 +11,10 @@ public class Int {
         this.value = value;
     }
 
+    public String toString() {
+        return String.valueOf(this.value);
+    }
+
     public void add(Int other) {
         this.value += other.value;
     }
@@ -25,9 +29,5 @@ public class Int {
 
     public void decrement() {
         this.value--;
-    }
-
-    public void tostring() {
-        System.out.println(this.value);
     }
 }
