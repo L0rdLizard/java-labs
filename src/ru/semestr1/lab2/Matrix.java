@@ -1,0 +1,63 @@
+package ru.semestr1.lab2;
+
+import java.util.Arrays;
+
+public class Matrix {
+    private int[][] matrix;
+    private int size;
+
+    public Matrix() {
+        this.size = 0;
+        this.matrix = new int[0][0];
+    }
+
+    public Matrix(int size) {
+        this.size = size;
+        this.matrix = new int[size][size];
+        // for (int i = 0; i < size; i++) {
+        //     this.matrix[i][i] = 1;
+        // }
+    }
+
+    public void setElement(int row, int col, int value) {
+        this.matrix[row][col] = value;
+    }
+
+    public int getElement(int row, int col) {
+        return this.matrix[row][col];
+    }
+
+    public Matrix sum(Matrix other) {
+        Matrix result = new Matrix(this.size);
+        for (int i = 0; i < this.size; i++) {
+            for (int j = 0; j < this.size; j++) {
+                result.setElement(i, j, this.getElement(i, j) + other.getElement(i, j));
+            }
+        }
+        return result;
+    }
+
+    public Matrix product(Matrix other) {
+        Matrix result = new Matrix(this.size);
+        for (int i = 0; i < this.size; i++) {
+            for (int j = 0; j < this.size; j++) {
+                for (int k = 0; k < this.size; k++) {
+                    result.setElement(i, j, result.getElement(i, j) + this.getElement(i, k) * other.getElement(k, j));
+                }
+            }
+        }
+        return result;
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+
+        for (int[] row : this.matrix) {
+            builder.append(Arrays.toString(row));
+            builder.append("\n");
+        }
+
+        return builder.toString();
+    }
+
+}
