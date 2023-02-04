@@ -14,8 +14,14 @@ public class Main2 {
         
         Matrix matrix = inputMatrix;
         for (int i = 2; i <= 10; i++) {
-            matrix = matrix.product(inputMatrix);
             System.out.println("Power " + i + ":");
+
+            // System.out.println("input matrix:");
+            // System.out.println(inputMatrix);
+            // System.out.println("matrix:");
+            // System.out.println(matrix);
+
+            matrix = matrix.product(inputMatrix);
             System.out.println(matrix);
         }
 

@@ -14,10 +14,20 @@ public class Matrix {
     public Matrix(int size) {
         this.size = size;
         this.matrix = new int[size][size];
-        // for (int i = 0; i < size; i++) {
-        //     this.matrix[i][i] = 1;
-        // }
+        for (int i = 0; i < size; i++) {
+            this.matrix[i][i] = 1;
+        }
     }
+
+    // public Matrix(Matrix other) {
+    //     this.size = other.size;
+    //     this.matrix = new int[this.size][this.size];
+    //     for (int i = 0; i < this.size; i++) {
+    //         for (int j = 0; j < this.size; j++) {
+    //             this.matrix[i][j] = other.matrix[i][j];
+    //         }
+    //     }
+    // }
 
     public void setElement(int row, int col, int value) {
         this.matrix[row][col] = value;
@@ -38,7 +48,13 @@ public class Matrix {
     }
 
     public Matrix product(Matrix other) {
-        Matrix result = new Matrix(this.size);
+        Matrix result;
+        result = new Matrix(this.size);
+        for (int i = 0; i < this.size; i++) {
+            for (int j = 0; j < this.size; j++) {
+                result.setElement(i, j, 0);
+            }
+        }
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 for (int k = 0; k < this.size; k++) {
