@@ -55,7 +55,7 @@ class Matrix {
 
     public void setElement(int row, int column, int value) {
         if (row < 0 || row >= this.rows || column < 0 || column >= this.columns) {
-            throw new MatrixException("Index out of bounds");
+            throw new MatrixException("Out of limits");
         }
 
         this.matrix[row][column] = value;
@@ -63,7 +63,7 @@ class Matrix {
 
     public int getElement(int row, int column) {
         if (row < 0 || row >= this.rows || column < 0 || column >= this.columns) {
-            throw new MatrixException("Index out of bounds");
+            throw new MatrixException("Out of limits");
         }
 
         return this.matrix[row][column];
