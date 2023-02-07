@@ -31,16 +31,18 @@ public class Main2 {
 
         Matrix a = new Matrix(3);
         a.setElement(0, 1, 1);
+        a.setElement(0, 2, 1);
         a.setElement(1, 0, 1);
         a.setElement(1, 2, 1);
         a.setElement(2, 1, 1);
+        
         System.out.println("a = ");
         System.out.println(a);
 
         Matrix b = new Matrix(3);
         b.setElement(0, 1, 1);
-        b.setElement(1, 0, 1);
-        b.setElement(1, 2, 1);
+        b.setElement(1, 0, 2);
+        b.setElement(1, 2, 3);
         b.setElement(2, 1, 1);
         System.out.println("b = ");
         System.out.println(b);
