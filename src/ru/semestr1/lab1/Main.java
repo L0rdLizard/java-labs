@@ -24,15 +24,5 @@ public class Main {
         a.decrement();
         System.out.println("a-- = " + a);
         System.out.println();
-
-        // a.add(b);
-        // a.tostring();
-        // a.sub(b);
-        // a.tostring();
-        // a.increment();
-        // a.tostring();
-        // a.decrement();
-        // a.tostring(); мимимииииииииииииииииииииииииииииииииииииииииииииииииииииииииииии
-        // a.increment(); че это
     }
 }
