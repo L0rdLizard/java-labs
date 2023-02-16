@@ -50,13 +50,17 @@ public class Matrix {
     public Matrix product(Matrix other) {
         Matrix result;
         result = new Matrix(this.size);
+        // for (int i = 0; i < size; i++) {
+        //     this.matrix[i][i] = 0;
+        // }
+        // for (int i = 0; i < this.size; i++) {
+        //     for (int j = 0; j < this.size; j++) {
+        //         result.setElement(i, j, 0);
+        //     }
+        // }
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 result.setElement(i, j, 0);
-            }
-        }
-        for (int i = 0; i < this.size; i++) {
-            for (int j = 0; j < this.size; j++) {
                 for (int k = 0; k < this.size; k++) {
                     // result.setElement(i, j, result.getElement(i, j) + this.getElement(i, k) * other.getElement(k, j));
                     result.matrix[i][j] += this.matrix[i][k] * other.matrix[k][j];
