@@ -1,4 +1,4 @@
-package ru.semestr1.lab1;
+package ru.semestr1.lab01;
 
 public class Fraction {
     private int numerator;

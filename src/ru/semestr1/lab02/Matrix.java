@@ -1,4 +1,4 @@
-package ru.semestr1.lab2;
+package ru.semestr1.lab02;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package ru.semestr1.lab2;
+package ru.semestr1.lab02;
 
 public class Main2 {
     public static void main(String[] args) {

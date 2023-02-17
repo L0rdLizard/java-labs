@@ -1,4 +1,4 @@
-package ru.semestr1.lab1;
+package ru.semestr1.lab01;
 //доп: fraction класс для работы с дробями 2 методо add mul числитель и зн в разных полях
 public class Main {
     public static void main(String[] args) {
