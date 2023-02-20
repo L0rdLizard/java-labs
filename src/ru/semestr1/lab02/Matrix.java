@@ -81,4 +81,28 @@ public class Matrix {
         return builder.toString();
     }
 
+    public void doMiracleDiag(int type){
+        int temp;
+        if (type == 0) {
+            for (int i = 0; i < this.size; i++) {
+                for (int j = 0; j < this.size; j++) {
+                    if (i < j) {
+                        temp = this.matrix[i][j];
+                        this.matrix[i][j] = this.matrix[j][i];
+                        this.matrix[j][i] = temp;
+                    }
+                }
+            }
+        } else if (type == 1) {
+            for (int i = 0; i < this.size; i++) {
+                for (int j = 0; j < this.size; j++) {
+                    if (i + j < this.size - 1) {
+                        temp = this.matrix[i][j];
+                        this.matrix[i][j] = this.matrix[this.size - j - 1][this.size - i - 1];
+                        this.matrix[this.size - j - 1][this.size - i - 1] = temp;
+                    }
+                }
+            }
+        }
+    }
 }
