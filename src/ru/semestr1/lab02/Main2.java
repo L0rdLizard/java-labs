@@ -58,14 +58,43 @@ public class Main2 {
         // System.out.println(d);
         // System.out.println();
 
-        Matrix e = new Matrix(3);
-        e.setElement(1, 0, 5);
-        e.setElement(2, 1, 4);
-        System.out.println("e = ");
-        System.out.println(e);
+        // Matrix e = new Matrix(3);
+        // e.setElement(1, 0, 5);
+        // e.setElement(2, 1, 4);
+        // System.out.println("e = ");
+        // System.out.println(e);
 
-        e.doMiracleDiag(0);
-        System.out.println("e = ");
-        System.out.println(e);
+        // e.doMiracleDiag(0);
+        // System.out.println("e = ");
+        // System.out.println(e);
+
+        // test for doMiracleDiag
+        // Matrix a = new Matrix(3);
+        // a.setElement(0, 1, 1);
+        // a.setElement(0, 2, 1);
+        // a.setElement(1, 0, 1);
+        // a.setElement(1, 2, 1);
+        // a.setElement(2, 1, 1);
+        // System.out.println("a = ");
+        // System.out.println(a);
+        // a.doMiracleDiag(0);
+        // System.out.println("a = ");
+        // System.out.println(a);
+        //another test
+        Matrix b = new Matrix(4);
+        b.setElement(0, 1, 1);
+        b.setElement(0, 2, 1);
+        b.setElement(1, 0, 1);
+        b.setElement(1, 2, 1);
+        b.setElement(2, 1, 1);
+        b.setElement(2, 3, 1);
+        b.setElement(3, 2, 1);
+        System.out.println("b = ");
+        System.out.println(b);
+        b.doMiracleDiag(1);
+        System.out.println("b = ");
+        System.out.println(b);
+
+
     }
 }
