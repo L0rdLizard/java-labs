@@ -1,4 +1,4 @@
-package ru.semestr1.lab03;
+package ru.semestr1.lab03dop;
 
 
 class MatrixException extends RuntimeException {
