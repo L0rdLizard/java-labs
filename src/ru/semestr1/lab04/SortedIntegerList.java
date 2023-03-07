@@ -13,8 +13,8 @@ public class SortedIntegerList {
     }
 
     public SortedIntegerList() {
-        // this(true);
-        this.allowDublicates = true;
+        this(true);
+        // this.allowDublicates = true;
     }
     
     public void add(int value)
