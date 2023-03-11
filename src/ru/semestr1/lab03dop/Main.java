@@ -50,16 +50,20 @@ public class Main {
         // try {
         //     SquareMatrix matrix7 = matrix5.sum(matrix6);
         //     System.out.println(matrix7);
-        // } catch (MatrixException e) {
+        // } catch (SumMatrixException e) {
         //     System.out.println(e.getMessage());
         // }
 
         // try {
-        //     SquareMatrix matrix7 = matrix5.sum(matrix5);
-        //     System.out.println(matrix7.getElement(100, 50));
+        // SquareMatrix matrix7 = matrix5.sum(matrix5);
+        // System.out.println(matrix7.getElement(100, 50));
         // } catch (MatrixException e) {
-        //     System.out.println(e.getMessage());
+        // System.out.println(e.getMessage());
         // }
-        
+
+        FourPartMatrix e = new FourPartMatrix(4);
+        e.setElement(0, 0, 1);
+        e.setElement(1, 1, 2);
+        System.out.println(e);
     }
 }

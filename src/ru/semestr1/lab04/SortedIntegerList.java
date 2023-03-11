@@ -45,6 +45,10 @@ public class SortedIntegerList {
     }
 
     public void remove(int value){
+        if (list.isEmpty())
+        {
+            return;
+        }
         ListIterator<Integer> iterator = list.listIterator();
         while (iterator.hasNext())
         {
