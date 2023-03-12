@@ -1,5 +1,4 @@
 package ru.semestr1.lab04;
-
 import java.util.LinkedList;
 import java.util.ListIterator;
 
