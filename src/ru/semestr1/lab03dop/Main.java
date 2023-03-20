@@ -61,9 +61,15 @@ public class Main {
         // System.out.println(e.getMessage());
         // }
 
-        FourPartMatrix e = new FourPartMatrix(4);
-        e.setElement(0, 0, 1);
-        e.setElement(1, 1, 2);
-        System.out.println(e);
+        // FourPartMatrix e = new FourPartMatrix(4);
+        // e.setElement(0, 0, 1);
+        // e.setElement(1, 1, 2);
+        // System.out.println(e);
+        PartMatrix m = new PartMatrix(4);
+        m.setElement(0, 0, 1);
+        m.setElement(1, 0, 2);
+        m.setElement(2, 0, 3);
+        m.setElement(3, 0, 4);
+        System.out.println(m);
     }
 }
