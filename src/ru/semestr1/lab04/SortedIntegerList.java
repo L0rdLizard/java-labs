@@ -15,6 +15,18 @@ public class SortedIntegerList {
         this(true);
         // this.allowDublicates = true;
     }
+
+    SortedIntegerList cartesianProduct(SortedIntegerList other) {
+        SortedIntegerList result = new SortedIntegerList();
+        ListIterator<Integer> iterator1 = this.list.listIterator();
+        ListIterator<Integer> iterator2 = other.list.listIterator();
+        while (iterator1.hasNext()) {
+            while (iterator2.hasNext()) {
+                result.add(iterator1.next() * iterator2.next());
+            }
+        }
+        return result;
+    }
     
     public void add(int value)
     {
