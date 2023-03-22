@@ -39,20 +39,29 @@ public class SparseMatrix extends Matrix{
     }
 
     public void setElement(final int row, final int column, int value) {
-        ListIterator<SparseMatrixElement> iterator = matrix.listIterator();
-        if (matrix.size() == 0) {
-            matrix.add(new SparseMatrixElement(row, column, value));
+
+        if (value == 0) {
             return;
         }
+//        if (matrix.size() == 0) {
+//            matrix.add(new SparseMatrixElement(row, column, value));
+//            return;
+//        }
 
-        for (SparseMatrixElement element : matrix) {
-            if (element.getRow() > row) {
+        ListIterator<SparseMatrixElement> iterator = matrix.listIterator();
+        SparseMatrixElement element;
+        while (iterator.hasNext()){
+            element = iterator.next();
+            if (element.getRow() == row && element.getColumn() == column) {
+                element.setValue(value);
+                return;
+            }
+            if (element.getRow() == row && element.getColumn() > column) {
                 iterator.previous();
                 iterator.add(new SparseMatrixElement(row, column, value));
                 return;
             }
         }
-
         matrix.add(new SparseMatrixElement(row, column, value));
     }
 

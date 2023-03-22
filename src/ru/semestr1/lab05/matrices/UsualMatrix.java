@@ -11,6 +11,10 @@ public class UsualMatrix extends Matrix {
         matrix = new int[rows][columns];
     }
 
+    public UsualMatrix(int size){
+        this(size, size);
+    }
+
     public UsualMatrix(UsualMatrix matrix) {
         this.matrix = matrix.getMatrix();
         this.rows = matrix.getRows();
