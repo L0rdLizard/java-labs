@@ -40,9 +40,9 @@ public class SparseMatrix extends Matrix{
 
     public void setElement(final int row, final int column, int value) {
 
-        if (value == 0) {
-            return;
-        }
+//        if (value == 0) {
+//            return;
+//        }
 //        if (matrix.size() == 0) {
 //            matrix.add(new SparseMatrixElement(row, column, value));
 //            return;
@@ -56,8 +56,9 @@ public class SparseMatrix extends Matrix{
                 element.setValue(value);
                 return;
             }
-            if (element.getRow() == row && element.getColumn() > column) {
+            if (element.getRow() >= row && element.getColumn() > column) {
                 iterator.previous();
+//                element.setValue(value);
                 iterator.add(new SparseMatrixElement(row, column, value));
                 return;
             }

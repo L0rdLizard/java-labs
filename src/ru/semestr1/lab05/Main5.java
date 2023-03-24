@@ -15,8 +15,8 @@ public class Main5 {
             m1.setElement((int) (Math.random() * 1000), (int) (Math.random() * 1000), (int) (Math.random() * 1000));
             m2.setElement((int) (Math.random() * 1000), (int) (Math.random() * 1000), (int) (Math.random() * 1000));
         }
-//        m1 = m1.add(m2);
-        m1 = m1.product(m2);
+        m1 = m1.add(m2);
+//        m1 = m1.product(m2);
         System.out.println(m1);
 
 
