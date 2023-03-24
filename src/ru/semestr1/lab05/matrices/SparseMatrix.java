@@ -7,10 +7,12 @@ import java.util.ListIterator;
 
 public class SparseMatrix extends Matrix{
     protected LinkedList<SparseMatrixElement> matrix;
+
     protected int rows;
     protected int columns;
 
-    public SparseMatrix(int rows, int columns) {
+
+    public SparseMatrix(final int rows, final int columns) {
         this.rows = rows;
         this.columns = columns;
         matrix = new LinkedList<SparseMatrixElement>();
@@ -38,35 +40,51 @@ public class SparseMatrix extends Matrix{
         return columns;
     }
 
-    public void setElement(final int row, final int column, int value) {
-
-//        if (value == 0) {
-//            return;
-//        }
-//        if (matrix.size() == 0) {
-//            matrix.add(new SparseMatrixElement(row, column, value));
-//            return;
-//        }
-
+    public void removeElement(final int row, final int column) {
         ListIterator<SparseMatrixElement> iterator = matrix.listIterator();
         SparseMatrixElement element;
         while (iterator.hasNext()){
             element = iterator.next();
             if (element.getRow() == row && element.getColumn() == column) {
-                element.setValue(value);
+                iterator.remove();
                 return;
             }
-            if (element.getRow() >= row && element.getColumn() > column) {
-                iterator.previous();
-//                element.setValue(value);
-                iterator.add(new SparseMatrixElement(row, column, value));
+        }
+    }
+
+    public void setElement(final int row, final int column, int value) {
+
+        if (value == 0) {
+            removeElement(row, column);
+            return;
+        }
+
+        for (SparseMatrixElement element : matrix) {
+            if (element.getRow() == row && element.getColumn() == column) {
+                element.setValue(value);
                 return;
             }
         }
         matrix.add(new SparseMatrixElement(row, column, value));
+
+//        ListIterator<SparseMatrixElement> iterator = matrix.listIterator();
+//        SparseMatrixElement element;
+//        while (iterator.hasNext()){
+//            element = iterator.next();
+//            if (element.getRow() == row && element.getColumn() == column) {
+//                element.setValue(value);
+//                return;
+//            }
+//            if (element.getRow() >= row && element.getColumn() > column) {
+//                iterator.previous();
+//                iterator.add(new SparseMatrixElement(row, column, value));
+//                return;
+//            }
+//        }
+//        matrix.add(new SparseMatrixElement(row, column, value));
     }
 
-    public int getElement(int row, int column) {
+    public int getElement(final int row, final int column) {
         for (SparseMatrixElement element : matrix) {
             if (element.getRow() == row && element.getColumn() == column) {
                 return element.getValue();

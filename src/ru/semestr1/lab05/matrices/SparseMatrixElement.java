@@ -1,11 +1,11 @@
 package ru.semestr1.lab05.matrices;
 
 public class SparseMatrixElement{
-    private int row;
-    private int column;
+    private final int row;
+    private final int column;
     private int value;
 
-    public SparseMatrixElement(int row, int column, int value) {
+    public SparseMatrixElement(final int row, final int column, int value) {
         this.row = row;
         this.column = column;
         this.value = value;
@@ -26,4 +26,5 @@ public class SparseMatrixElement{
     public void setValue(int value) {
         this.value = value;
     }
+
 }
