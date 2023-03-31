@@ -10,7 +10,7 @@ public class Main{
 
         System.out.println("Все привет, меня зовут Анастасия Гетц, и сегодня замечательный день для того чтобы вы увидели все мои навыки программирования. Type 'yes' or 'no'");
         String ar1;
-        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in); 
         ar1 = in.nextLine();
         if (ar1.equals("yes")) yes++;
         if (ar1.equals("no")) no++;
