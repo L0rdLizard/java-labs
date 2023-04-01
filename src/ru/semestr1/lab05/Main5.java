@@ -25,17 +25,28 @@ public class Main5 {
 //        SparseMatrix2 m4 = m1.product(m2);
 //        System.out.println(m4);
 
+//        UsualMatrix m1 = new UsualMatrix(3);
+//        SquareMatrix m2 = new SquareMatrix(3);
+//        for (int i = 0; i < 9; i++) {
+//            m1.setElement((int) (Math.random() * 3), (int) (Math.random() * 3), (int) (Math.random() * 9));
+//            m2.setElement((int) (Math.random() * 3), (int) (Math.random() * 3), (int) (Math.random() * 9));
+//        }
+//        System.out.println(m1);
+//        System.out.println(m2);
+//        UsualMatrix m3 = m1.add(m2);
+//        System.out.println(m3);
+//        UsualMatrix m4 = m1.product(m2);
+//        System.out.println(m4);
+
         UsualMatrix m1 = new UsualMatrix(3);
         SquareMatrix m2 = new SquareMatrix(3);
-        for (int i = 0; i < 9; i++) {
-            m1.setElement((int) (Math.random() * 3), (int) (Math.random() * 3), (int) (Math.random() * 9));
-            m2.setElement((int) (Math.random() * 3), (int) (Math.random() * 3), (int) (Math.random() * 9));
-        }
-        System.out.println(m1);
-        System.out.println(m2);
+        m1.setElement(0, 0, 1);
+        m1.setElement(0, 1, 1);
+
+        m2.setElement(1, 0, 1);
+        m2.setElement(1, 1, 1);
+
         UsualMatrix m3 = m1.add(m2);
         System.out.println(m3);
-        UsualMatrix m4 = m1.product(m2);
-        System.out.println(m4);
     }
 }
