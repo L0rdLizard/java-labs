@@ -1,4 +1,4 @@
-package ru.semestr1.Anonimus3;
+package ru.semestr1.Anonimus.Anonimus3;
 
 import java.util.Scanner;
 

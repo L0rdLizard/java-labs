@@ -1,4 +1,4 @@
-package ru.semestr1.Anonimus;
+package ru.semestr1.Anonimus.Anonimus1;
 
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;

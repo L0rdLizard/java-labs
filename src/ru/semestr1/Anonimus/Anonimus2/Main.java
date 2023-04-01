@@ -1,4 +1,4 @@
-package ru.semestr1.Anonimus2;
+package ru.semestr1.Anonimus.Anonimus2;
 
 public class Main {
     public static void main(String[] args) {
