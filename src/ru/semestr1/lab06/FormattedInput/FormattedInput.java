@@ -11,6 +11,7 @@ public class FormattedInput {
         return readFromScanner(new Scanner(in), format);
     }
 
+
     private static Object[] readFromScanner(Scanner scanner, String format) {
         Object[] result = new Object[format.length()];
         int currentIndex = 0;

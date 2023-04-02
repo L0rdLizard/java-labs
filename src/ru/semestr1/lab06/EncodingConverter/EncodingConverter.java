@@ -10,6 +10,7 @@ import java.io.*;
 // java EncodingConverter in.txt out.txt utf8 cp1251
 
 public class EncodingConverter {
+
     public static void main(String[] args) {
         // check if args length is 4
         if (args.length != 4) {
