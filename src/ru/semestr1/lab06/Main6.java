@@ -1,7 +1,7 @@
 package ru.semestr1.lab06;
 
 import ru.semestr1.lab06.FormattedInput.FormattedInput;
-
+//доп
 public class Main6 {
 
     public static void main(String[] args) {
@@ -11,11 +11,13 @@ public class Main6 {
         char c = (char) vals[2];
         System.out.println("i = " + i + ", s = " + s + ", c = " + c);
 
-        String str = "123 456 789";
-        Object[]  valsStr = FormattedInput.sscanf("%d %d %d", str);
-        int x = (int) valsStr[0];
-        int y = (int) valsStr[1];
-        int z = (int) valsStr[2];
-        System.out.println("x = " + x + ", y = " + y + ", z = " + z);
+        String str = "я люблю гуап";
+        Object[]  valsStr = FormattedInput.sscanf("%s %s %s", str);
+
+        String x = (String) valsStr[0];
+        String y = (String) valsStr[1];
+        String z = (String) valsStr[2];
+
+        System.out.println( x + " " + y + " " + z);
     }
 }

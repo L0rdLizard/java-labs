@@ -6,33 +6,27 @@ import java.util.Arrays;
 
 import java.io.*;
 
-// Пример вызова:
 // java EncodingConverter in.txt out.txt utf8 cp1251
 
 public class EncodingConverter {
 
     public static void main(String[] args) {
-        // check if args length is 4
         if (args.length != 4) {
             System.out.println("Invalid number of arguments");
             return;
         }
 
-        // check if args[0] and args[1] are valid file paths
         if (!args[0].matches(".*\\.txt") || !args[1].matches(".*\\.txt")) {
             System.out.println("Invalid file path");
             return;
         }
 
-        // Create a list of all encodings supported by the JVM, including aliases.
         String[] encodings = Charset.availableCharsets().keySet().toArray(new String[0]);
         ArrayList<String> charsets = new ArrayList<String>(Arrays.asList(encodings));
         for (String encoding : encodings) {
             charsets.addAll(Charset.availableCharsets().get(encoding).aliases());
         }
 
-        // Check if args[2] and args[3] are valid encodings. Use the original
-        // names for encodings (case-insensitive -> case-sensitive).
         for (int i = 2; i < 4; i++) {
             final int j = i;
             try {
