@@ -9,7 +9,9 @@ import java.io.*;
 public class EncodingConverter {
 
     public static void main(String[] args) {
-        if ((args.length < 4) || (args.length %2==1) ){
+        System.out.println(args.length);
+        System.out.println((args.length-(args.length-2)/2));
+        if ((args.length < 4) || (args.length%2==1) ){
             System.out.println("Invalid number of arguments");
             return;
         }
@@ -26,15 +28,15 @@ public class EncodingConverter {
             charsets.addAll(Charset.availableCharsets().get(encoding).aliases());
         }
 
-//        for (int i = 2; i < 4; i++) {
-//            final int j = i;
-//            try {
-//                args[j] = charsets.stream().filter(charset -> charset.equalsIgnoreCase(args[j])).findFirst().get();
-//            } catch (Exception e) {
-//                System.out.println("Invalid encoding");
-//                return;
-//            }
-//        }
+        for (int i = (args.length-(args.length-2)/2); i < args.length; i++) {
+            final int j = i;
+            try {
+                args[j] = charsets.stream().filter(charset -> charset.equalsIgnoreCase(args[j])).findFirst().get();
+            } catch (Exception e) {
+                System.out.println("Invalid encoding");
+                return;
+            }
+        }
 
 //        for (int i = 2; i < args.length; i++) {
 //            final int j = i;
@@ -57,9 +59,16 @@ public class EncodingConverter {
             File source = new File(args[0]);
             File[] target = new File[args.length/2-1];
             String[] toEncodings = new String[args.length/2-1];
+            System.out.println(source);
+            System.out.println(args[1]);
             for (int i = 0; i < args.length/2-1; i++) {
-                target[i] = new File(args[i+1]);
-                toEncodings[i] = args[i+2];
+                target[i] = new File(args[i+2]);
+                System.out.println(target[i]);
+            }
+
+            for (int i = 0; i < args.length/2-1; i++) {
+                toEncodings[i] = args[i+2+(args.length/2-1)];
+                System.out.println(toEncodings[i]);
             }
             try {
                 convert(source, args[1], target, toEncodings);
@@ -80,18 +89,15 @@ public class EncodingConverter {
 //        }
 //    }
 
-    //create convert method but with several encodings (File source, File[] target, String fromEncoding, String[] toEncodings)
 
     public static void convert(File source, String fromEncoding, File[] target,  String[] toEncodings) throws IOException {
-        try (
-                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(source), fromEncoding));) {
-            char[] buffer = new char[1024];
-            int read;
-            for (int i = 0; i < toEncodings.length; i++) {
-                try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(target[i]), toEncodings[i]));) {
-                    while ((read = br.read(buffer)) != -1) {
-                        bw.write(buffer, 0, read);
-                    }
+        for (int i = 0; i < toEncodings.length; i++) {
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(source), fromEncoding));
+                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(target[i]), toEncodings[i]))) {
+                char[] buffer = new char[1024];
+                int read;
+                while ((read = br.read(buffer)) != -1) {
+                    bw.write(buffer, 0, read);
                 }
             }
         }
