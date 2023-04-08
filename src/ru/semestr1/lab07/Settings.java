@@ -56,15 +56,6 @@ public class Settings {
     }
 
     public void loadFromTextFile(String filename) throws IOException {
-//        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))) {
-//            String line;
-//            while ((line = bufferedReader.readLine()) != null) {
-//                String[] keyValue = line.split(" ");
-//                settingsMap.put(keyValue[0], Integer.parseInt(keyValue[1]));
-//            }
-//        } catch (IOException e) {
-//            throw new IOException("Error while reading from file", e);
-//        }
         try {
             BufferedReader in = new BufferedReader(new FileReader(filename));
             String line = in.readLine();
@@ -87,14 +78,16 @@ public class Settings {
 
     @Override
     public boolean equals(Object obj){
-        if (obj == null) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
+
         Settings settings = (Settings) obj;
-        return settingsMap.equals(settings.settingsMap);
+        return settings.settingsMap.equals(this.settingsMap);
     }
 
 }
