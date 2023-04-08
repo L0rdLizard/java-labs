@@ -18,26 +18,42 @@ public class Settings {
         settingsMap.remove(key);
     }
     public void saveToBinaryFile(String filename) throws IOException {
-        try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(filename))) {
-            dataOutputStream.writeInt(settingsMap.size());
-            for (String key : settingsMap.keySet()) {
-                dataOutputStream.writeUTF(key);
-                dataOutputStream.writeInt(settingsMap.get(key));
-            }
-        } catch (IOException e) {
-            throw new IOException("Error while writing to file", e);
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
+            out.writeObject(this);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            throw new IOException("Error while saving to binary file: " + e.getMessage());
         }
+//        try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(filename))) {
+//            dataOutputStream.writeInt(settingsMap.size());
+//            for (String key : settingsMap.keySet()) {
+//                dataOutputStream.writeUTF(key);
+//                dataOutputStream.writeInt(settingsMap.get(key));
+//            }
+//        } catch (IOException e) {
+//            throw new IOException("Error while writing to file", e);
+//        }
     }
     public void loadFromBinaryFile(String filename) throws IOException {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] keyValue = line.split(" ");
-                settingsMap.put(keyValue[0], Integer.parseInt(keyValue[1]));
-            }
-        } catch (IOException e) {
-            throw new IOException("Error while reading from file", e);
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
+            Settings settings = (Settings) in.readObject();
+            in.close();
+            this.settingsMap = settings.settingsMap;
+        } catch (Exception e) {
+            throw new IOException("Error while loading from binary file: " + e.getMessage());
         }
+//        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))) {
+//            String line;
+//            while ((line = bufferedReader.readLine()) != null) {
+//                String[] keyValue = line.split(" ");
+//                settingsMap.put(keyValue[0], Integer.parseInt(keyValue[1]));
+//            }
+//        } catch (IOException e) {
+//            throw new IOException("Error while reading from file", e);
+//        }
     }
     public void saveToTextFile(String filename) throws IOException {
         try {
