@@ -30,13 +30,6 @@ public class Main7 {
 
         System.out.println(settings);
 
-        settings.delete("d");
-        settings.put("kek", 7);
-
-        System.out.println(settings);
-        System.out.print("settings.get(\"answer\") = ");
-        System.out.println(settings.get("answer"));
-
         String basePath = "src/ru/semestr1/lab07/";
 
         try {

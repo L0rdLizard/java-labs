@@ -9,22 +9,6 @@ public class Settings {
         settingsMap = new HashMap<String, Integer>();
     }
 
-    @Override
-    public String toString(){
-        return settingsMap.toString();
-    }
-    
-    @Override
-    public boolean equals(Object obj){
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        Settings settings = (Settings) obj;
-        return settingsMap.equals(settings.settingsMap);
-    }
 
     public void put(String key, int value) {
         settingsMap.put(key, value);
@@ -96,5 +80,21 @@ public class Settings {
         }
     }
 
+    @Override
+    public String toString(){
+        return settingsMap.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Settings settings = (Settings) obj;
+        return settingsMap.equals(settings.settingsMap);
+    }
 
 }
