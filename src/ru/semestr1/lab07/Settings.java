@@ -8,15 +8,36 @@ public class Settings {
     public Settings() {
         settingsMap = new HashMap<String, Integer>();
     }
+
+    @Override
+    public String toString(){
+        return settingsMap.toString();
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Settings settings = (Settings) obj;
+        return settingsMap.equals(settings.settingsMap);
+    }
+
     public void put(String key, int value) {
         settingsMap.put(key, value);
     }
+
     public int get(String key) {
         return settingsMap.get(key);
     }
+
     public void delete(String key) {
         settingsMap.remove(key);
     }
+
     public void saveToBinaryFile(String filename) throws IOException {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
@@ -26,16 +47,8 @@ public class Settings {
         } catch (Exception e) {
             throw new IOException("Error while saving to binary file: " + e.getMessage());
         }
-//        try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(filename))) {
-//            dataOutputStream.writeInt(settingsMap.size());
-//            for (String key : settingsMap.keySet()) {
-//                dataOutputStream.writeUTF(key);
-//                dataOutputStream.writeInt(settingsMap.get(key));
-//            }
-//        } catch (IOException e) {
-//            throw new IOException("Error while writing to file", e);
-//        }
     }
+
     public void loadFromBinaryFile(String filename) throws IOException {
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
@@ -45,16 +58,8 @@ public class Settings {
         } catch (Exception e) {
             throw new IOException("Error while loading from binary file: " + e.getMessage());
         }
-//        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))) {
-//            String line;
-//            while ((line = bufferedReader.readLine()) != null) {
-//                String[] keyValue = line.split(" ");
-//                settingsMap.put(keyValue[0], Integer.parseInt(keyValue[1]));
-//            }
-//        } catch (IOException e) {
-//            throw new IOException("Error while reading from file", e);
-//        }
     }
+
     public void saveToTextFile(String filename) throws IOException {
         try {
             PrintWriter out = new PrintWriter(new FileWriter(filename));
@@ -65,6 +70,7 @@ public class Settings {
             throw new IOException("Error while saving to text file: " + e.getMessage());
         }
     }
+
     public void loadFromTextFile(String filename) throws IOException {
 //        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))) {
 //            String line;
@@ -90,19 +96,5 @@ public class Settings {
         }
     }
 
-    @Override
-    public String toString(){
-        return settingsMap.toString();
-    }
-    @Override
-    public boolean equals(Object obj){
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        Settings settings = (Settings) obj;
-        return settingsMap.equals(settings.settingsMap);
-    }
+
 }
