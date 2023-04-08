@@ -18,7 +18,14 @@ public class Settings {
         settingsMap.remove(key);
     }
     public void saveToBinaryFile(String filename) throws IOException {
-
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
+            out.writeObject(this);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            throw new IOException("Error while loading from binary file: " + e.getMessage());
+        }
     }
     public void loadFromBinaryFile(String filename) throws IOException {
 
