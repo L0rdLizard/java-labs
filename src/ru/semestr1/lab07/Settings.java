@@ -1,5 +1,6 @@
 package ru.semestr1.lab07;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.io.*;
 public class Settings {
@@ -25,20 +26,19 @@ public class Settings {
     public void saveToBinaryFile(String filename) throws IOException {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
-            out.writeObject(this);
+            out.writeObject(settingsMap);
             out.flush();
             out.close();
         } catch (Exception e) {
-            throw new IOException("Error while saving to binary file: " + e.getMessage());
+            throw new IOException("Error while saving to binary file: " + e.getMessage() + Arrays.toString(e.getStackTrace()));
         }
     }
 
     public void loadFromBinaryFile(String filename) throws IOException {
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
-            Settings settings = (Settings) in.readObject();
+            this.settingsMap = (HashMap<String, Integer>) in.readObject();
             in.close();
-            this.settingsMap = settings.settingsMap;
         } catch (Exception e) {
             throw new IOException("Error while loading from binary file: " + e.getMessage());
         }

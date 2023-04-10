@@ -1,7 +1,7 @@
 package ru.semestr1.lab07;
 
 import java.io.*;
-
+//класс для хранения данных о телефонах в магазине (марка, модель, стоимость). Метод вывести телефоны дорое
 public class Main7 {
     public static void main(String[] args) {
 //        Settings test1 = new Settings();
@@ -22,9 +22,9 @@ public class Main7 {
         Settings settings = new Settings();
 
         settings.put("a", 1);
-        settings.put("b", 2);
-        settings.put("c", 3);
-        settings.put("d", 4);
+        settings.put("bio", 2);
+        settings.put("centra", 3);
+        settings.put("delta", 4);
         settings.put("answer", 42);
         settings.put("number", 618);
 
