@@ -4,21 +4,6 @@ import java.io.*;
 //класс для хранения данных о телефонах в магазине (марка, модель, стоимость). Метод вывести телефоны дорое
 public class Main7 {
     public static void main(String[] args) {
-//        Settings test1 = new Settings();
-//        test1.put("Volume", 10);
-//        test1.put("Brightness", 8);
-//        System.out.println(test1);
-//        String basePath = "src/ru/semestr1/lab07/";
-////        test1.saveToBinaryFile(basePath + "TestSaveToBin");
-//        try{
-//            test1.saveToBinaryFile(basePath + "testSaveToBin");
-//            Settings test2 = new Settings();
-//            test2.loadFromBinaryFile(basePath + "testSaveToBin");
-//            System.out.println(test2);
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage());
-//        }
-
 //        Settings settings = new Settings();
 //
 //        settings.put("a", 1);
