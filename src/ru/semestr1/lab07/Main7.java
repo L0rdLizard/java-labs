@@ -4,17 +4,20 @@ import java.io.*;
 //класс для хранения данных о телефонах в магазине (марка, модель, стоимость). Метод вывести телефоны дорое
 public class Main7 {
     public static void main(String[] args) {
-//        Settings settings = new Settings();
+        Settings settings = new Settings();
+
+        settings.put("a", 1);
+        settings.put("bio", 2);
+        settings.put("centra", 3);
+        settings.put("delta", 4);
+        settings.put("answer", 42);
+        settings.put("number", 618);
 //
-//        settings.put("a", 1);
-//        settings.put("bio", 2);
-//        settings.put("centra", 3);
-//        settings.put("delta", 4);
-//        settings.put("answer", 42);
-//        settings.put("number", 618);
-//
-//        System.out.println(settings);
-//
+        settings.delete("bio");
+        settings.delete("number");
+        System.out.println(settings.get("delta"));
+        System.out.println(settings);
+
 //        String basePath = "src/ru/semestr1/lab07/";
 //
 //        try {
@@ -27,7 +30,7 @@ public class Main7 {
 //        } catch (IOException e) {
 //            System.out.println(e.getMessage());
 //        }
-//
+////
 //        try {
 //            // save to text file and load to new object
 //            settings.saveToTextFile(basePath + "settings.txt");
