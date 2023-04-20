@@ -102,4 +102,28 @@ public class SortedIntegerList {
         sb.append("]");
         return sb.toString();
     }
+
+
+    // то же самое только без итератора
+    public void CombSort2() {
+        int gap = list.size();
+        boolean swapped = true;
+        while (gap > 1 || swapped) {
+            if (gap > 1) {
+                gap = (int) (gap / 1.247);
+            }
+            swapped = false;
+            for (int i = 0; i < list.size() - gap; i++) {
+                Integer current = list.get(i);
+                Integer next = list.get(i + gap);
+                if (current > next) {
+                    list.set(i, next);
+                    list.set(i + gap, current);
+                    swapped = true;
+                }
+            }
+        }
+    }
+
+
 }
