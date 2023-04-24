@@ -1,8 +1,7 @@
 package ru.semestr1.lab09;
-
+//
 public class Main9 {
     public static void main(String[] args) {
-    // write deadlock code here
 
         Object lock1 = new Object();
         Object lock2 = new Object();
