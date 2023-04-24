@@ -26,9 +26,12 @@ public class Main8 {
         for (int i = 0; i < 1000; i++) {
             array[i] = (int) (Math.random() * 1000);
         }
-        System.out.println(array);
+        System.out.println(Arrays.toString(array));
 
         Object[] arrayObject = new Object[array.length];
+        for (int i = 0; i < 1000; i++) {
+            arrayObject[i] = array[i];
+        }
 
         MergeSort.mergesort(arrayObject,4);
 
