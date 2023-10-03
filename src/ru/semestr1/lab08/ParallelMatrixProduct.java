@@ -21,13 +21,13 @@ public class ParallelMatrixProduct {
         int columns = secondMatrix.getColumns();
         UsualMatrix result = new UsualMatrix(rows, columns);
 
-        int chunkSize = (rows + threads.length - 1) / threads.length;
-        for (int i = 0; i < rows; i += chunkSize) {
-            int chunkRows = Math.min(chunkSize, rows - i);
-            int threadIndex = i / chunkSize;
-            threads[threadIndex] = new Thread(new MatrixMultiplier(firstMatrix, secondMatrix, result, i, chunkRows));
-            threads[threadIndex].start();
-        }
+        // int chunkSize = (rows + threads.length - 1) / threads.length;
+        // for (int i = 0; i < rows; i += chunkSize) {
+        //     int chunkRows = Math.min(chunkSize, rows - i);
+        //     int threadIndex = i / chunkSize;
+        //     threads[threadIndex] = new Thread(new MatrixMultiplier(firstMatrix, secondMatrix, result, i, chunkRows));
+        //     threads[threadIndex].start();
+        // }
 
         for (Thread thread : threads) {
             try {
@@ -40,23 +40,23 @@ public class ParallelMatrixProduct {
         return result;
     }
 
-    private record MatrixMultiplier(UsualMatrix firstMatrix,
-                                    UsualMatrix secondMatrix,
-                                    UsualMatrix result,
-                                    int startRow,
-                                    int chunkRows) implements Runnable {
+    // private record MatrixMultiplier(UsualMatrix firstMatrix,
+    //                                 UsualMatrix secondMatrix,
+    //                                 UsualMatrix result,
+    //                                 int startRow,
+    //                                 int chunkRows) implements Runnable {
 
-        @Override
-        public void run() {
-            for (int i = startRow; i < startRow + chunkRows; i++) {
-                for (int j = 0; j < secondMatrix.getColumns(); j++) {
-                    int sum = 0;
-                    for (int k = 0; k < firstMatrix.getColumns(); k++) {
-                        sum += firstMatrix.getElement(i, k) * secondMatrix.getElement(k, j);
-                    }
-                    result.setElement(i, j, sum);
-                }
-            }
-        }
-    }
+    //     @Override
+    //     public void run() {
+    //         for (int i = startRow; i < startRow + chunkRows; i++) {
+    //             for (int j = 0; j < secondMatrix.getColumns(); j++) {
+    //                 int sum = 0;
+    //                 for (int k = 0; k < firstMatrix.getColumns(); k++) {
+    //                     sum += firstMatrix.getElement(i, k) * secondMatrix.getElement(k, j);
+    //                 }
+    //                 result.setElement(i, j, sum);
+    //             }
+    //         }
+    //     }
+    // }
 }
