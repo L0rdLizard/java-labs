@@ -2,6 +2,8 @@ package ru.semestr1.lab07;
 
 import java.security.Key;
 import java.util.HashMap;
+import java.util.Objects;
+
 //сделать чтения из файла
 public class PhonesMarket {
     private HashMap<Integer, PhoneDetails> phones;
@@ -19,6 +21,13 @@ public class PhonesMarket {
         phone.price = price;
         phones.put(PhoneId, phone);
         PhoneId++;
+    }
+    public void printByModel(String model){
+        for (int i = 0; i < phones.size(); i++) {
+            if (Objects.equals(phones.get(i).model, model)) {
+                System.out.println(phones.get(i).brand + " " + phones.get(i).model + " " + phones.get(i).price);
+            }
+        }
     }
 
     public void sortByPrice() {

@@ -23,13 +23,13 @@ public class Main8dop {
 //
 //        System.out.println(Arrays.toString(arrayObject));
 
-        Integer[] array = new Integer[100000];
-        for (int i = 0; i < 100000; i++) {
+        Integer[] array = new Integer[10000];
+        for (int i = 0; i < 10000; i++) {
             array[i] = (int) (Math.random() * 1000);
         }
         long time = System.currentTimeMillis();
 
-        MergeSort.mergesort(array, 16, Comparator.naturalOrder());
+        MergeSort.mergesort(array, 4, Comparator.naturalOrder());
 
         System.out.println(System.currentTimeMillis() - time);
 
