@@ -5,7 +5,7 @@ import java.net.*;
 
 
 public class UDPServer {
-    private static InetAddress  clientAddress;
+    private static InetAddress clientAddress;
     private static int clientPort;
     private static String chatMateName = "";
     

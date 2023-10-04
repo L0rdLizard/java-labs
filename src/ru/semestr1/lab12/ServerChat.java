@@ -2,6 +2,7 @@ package ru.semestr1.lab12;
 
 import java.io.*;
 import java.net.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,31 @@ public class ServerChat {
 
         int port = Integer.parseInt(args[0]);
         ServerSocket serverSocket = new ServerSocket(port);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        Thread serverThread = new Thread(() -> {
+            while (true) {
+                try {
+                    String message = reader.readLine();
+                    System.out.println("12");
+                    if (message.startsWith("@casino ")) {
+                        String max = message.substring(8);
+                        int maxInt = Integer.parseInt(max);
+                        int rightInt = (int) (Math.random() * maxInt);
+                        System.out.println(rightInt);
+                        for (Connection connection : connections) {
+                            connection.out.println(rightInt);
+                        }
+                        int numbers[];
+                        int bets[];
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        serverThread.start();
 
         while (true) {
             Socket clientSocket = serverSocket.accept();
@@ -49,8 +75,8 @@ public class ServerChat {
                     String message = in.readLine();
                     if (message.equals("@exit")) {
                         break;
-                    } else if (message.startsWith("@senduser ")) {
-                        String username = message.substring(10);
+                    } else if (message.startsWith("@ls ")) {
+                        String username = message.substring(4);
                         String tempMessage = in.readLine();
                         for (Connection connection : connections) {
                             if (connection.name.equals(username)) {
