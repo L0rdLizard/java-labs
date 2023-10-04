@@ -42,7 +42,7 @@ public class ClientChat {
             String message = console.readLine();
             out.println(message);
             if (message.equals("@exit")) {
-                break;
+                System.exit(0);
             }
         }
     }

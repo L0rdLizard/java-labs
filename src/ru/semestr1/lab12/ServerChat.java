@@ -59,7 +59,9 @@ public class ServerChat {
                         }
                     } else {
                         for (Connection connection : connections) {
-                            connection.out.println(name + ": " + message);
+                            if (!(connection.name.equals(name))) {
+                                connection.out.println(name + ": " + message);
+                            }
                         }
                     }
                 }
