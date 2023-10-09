@@ -18,22 +18,91 @@ public class ServerChat {
         int port = Integer.parseInt(args[0]);
         ServerSocket serverSocket = new ServerSocket(port);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//        PrintWriter out = new PrintWriter(System.out, true);
 
         Thread serverThread = new Thread(() -> {
             while (true) {
                 try {
                     String message = reader.readLine();
-                    System.out.println("12");
+//                    System.out.println("12");
                     if (message.startsWith("@casino ")) {
                         String max = message.substring(8);
+
                         int maxInt = Integer.parseInt(max);
-                        int rightInt = (int) (Math.random() * maxInt);
+                        int rightInt = (int) (Math.random() * maxInt) + 1;
                         System.out.println(rightInt);
+
+                        List<Connection> winners = new ArrayList<>();
+                        int bank = 0;
+
                         for (Connection connection : connections) {
-                            connection.out.println(rightInt);
+                            connection.out.println("try to guess the number from 1 to " + max + "\n" + "write '@guess', your number and your bet" + "\n" + "you have 15 seconds");
+                            String tempMessage = connection.in.readLine();
+                            int tempInt = 0;
+                            int tempNumber = 0;
+                            int tempBet = 0;
+                            if (tempMessage.startsWith("@guess ")) {
+                                System.out.println(connection.name);
+                                tempMessage = tempMessage.substring(7);
+//                                tempInt = Integer.parseInt(tempMessage);
+                                tempNumber = Integer.parseInt(tempMessage.substring(0, tempMessage.indexOf(" ")));
+                                tempBet = Integer.parseInt(tempMessage.substring(tempMessage.indexOf(" ") + 1));
+                                bank += tempBet;
+                            }
+                            if (tempNumber == rightInt) {
+                                winners.add(connection);
+                            }
                         }
-                        int numbers[];
-                        int bets[];
+
+//                        for (Connection connection : connections) {
+//                            connection.out.println("enter your bet");
+//                            String bet = connection.in.readLine();
+//                            int betInt = Integer.parseInt(bet);
+//                            bank += betInt;
+//                        }
+
+                        try {
+                            Thread.sleep(15000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (winners.size() > 0) {
+                            if (winners.size() > 1){
+                                bank = bank / winners.size();
+                            }
+                            for (Connection connection : winners) {
+                                connection.out.println("you win " + bank);
+                            }
+                        } else {
+                            for (Connection connection : connections) {
+                                connection.out.println("no winners");
+                            }
+                        }
+
+//                        for (Connection connection : connections) {
+//                            connection.out.println("enter your bet");
+//                            String bet = connection.in.readLine();
+//                            int betInt = Integer.parseInt(bet);
+//                            bank = betInt * connections.size();
+//
+//                            numbers = new int[connections.size()];
+//                            bets = new int[connections.size()];
+//                            for (int i = 0; i < connections.size(); i++) {
+//                                numbers[i] = (int) (Math.random() * maxInt);
+//                                bets[i] = (int) (Math.random() * maxInt);
+//                            }
+//                            for (int i = 0; i < connections.size(); i++) {
+//                                connection.out.println("number: " + numbers[i] + " bet: " + bets[i]);
+//                            }
+//                            for (int i = 0; i < connections.size(); i++) {
+//                                if (numbers[i] == rightInt) {
+//                                    connection.out.println("you win " + bets[i] * connections.size());
+//                                } else {
+//                                    connection.out.println("you lose");
+//                                }
+//                            }
+//                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -75,6 +144,19 @@ public class ServerChat {
                     String message = in.readLine();
                     if (message.equals("@exit")) {
                         break;
+                    } else if (message.startsWith("@guess ")) {
+                        String bet = message.substring(7);
+//                        int betInt = Integer.parseInt(bet);
+                        int tempNumber = Integer.parseInt(bet.substring(0, bet.indexOf(" ")));
+                        int tempBet = Integer.parseInt(bet.substring(bet.indexOf(" ") + 1));
+//                        System.out.println(tempNumber);
+//                        System.out.println(tempBet);
+
+                        for (Connection connection : connections) {
+                            if (connection.name.equals(name)) {
+                                connection.out.println("your bet: " + tempBet);
+                            }
+                        }
                     } else if (message.startsWith("@ls ")) {
                         String username = message.substring(4);
                         String tempMessage = in.readLine();
