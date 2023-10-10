@@ -54,12 +54,6 @@ public class ServerChat {
                             }
                         }
 
-//                        for (Connection connection : connections) {
-//                            connection.out.println("enter your bet");
-//                            String bet = connection.in.readLine();
-//                            int betInt = Integer.parseInt(bet);
-//                            bank += betInt;
-//                        }
 
                         try {
                             Thread.sleep(15000);
@@ -79,30 +73,6 @@ public class ServerChat {
                                 connection.out.println("no winners");
                             }
                         }
-
-//                        for (Connection connection : connections) {
-//                            connection.out.println("enter your bet");
-//                            String bet = connection.in.readLine();
-//                            int betInt = Integer.parseInt(bet);
-//                            bank = betInt * connections.size();
-//
-//                            numbers = new int[connections.size()];
-//                            bets = new int[connections.size()];
-//                            for (int i = 0; i < connections.size(); i++) {
-//                                numbers[i] = (int) (Math.random() * maxInt);
-//                                bets[i] = (int) (Math.random() * maxInt);
-//                            }
-//                            for (int i = 0; i < connections.size(); i++) {
-//                                connection.out.println("number: " + numbers[i] + " bet: " + bets[i]);
-//                            }
-//                            for (int i = 0; i < connections.size(); i++) {
-//                                if (numbers[i] == rightInt) {
-//                                    connection.out.println("you win " + bets[i] * connections.size());
-//                                } else {
-//                                    connection.out.println("you lose");
-//                                }
-//                            }
-//                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
