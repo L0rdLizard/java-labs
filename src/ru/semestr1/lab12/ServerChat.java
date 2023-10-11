@@ -42,12 +42,13 @@ public class ServerChat {
                             int tempNumber = 0;
                             int tempBet = 0;
                             if (tempMessage.startsWith("@guess ")) {
-                                System.out.println(connection.name);
                                 tempMessage = tempMessage.substring(7);
-//                                tempInt = Integer.parseInt(tempMessage);
+//                              
                                 tempNumber = Integer.parseInt(tempMessage.substring(0, tempMessage.indexOf(" ")));
                                 tempBet = Integer.parseInt(tempMessage.substring(tempMessage.indexOf(" ") + 1));
+
                                 bank += tempBet;
+                                System.out.println(connection.name + " " + tempBet);
                             }
                             if (tempNumber == rightInt) {
                                 winners.add(connection);
@@ -80,7 +81,7 @@ public class ServerChat {
             }
         });
 
-        serverThread.start();
+        
 
         while (true) {
             Socket clientSocket = serverSocket.accept();
