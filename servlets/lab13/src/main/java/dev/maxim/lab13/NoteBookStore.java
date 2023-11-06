@@ -81,6 +81,21 @@ public class NoteBookStore {
     }
 
     @Synchronized
+    public NoteBook getAddressBook() {
+        return noteBook;
+    }
+
+    @Synchronized
+    public Contact getContact(String name) {
+        return noteBook.getContact(name);
+    }
+
+    @Synchronized
+    public void addContact(Contact contact) {
+        noteBook.addContact(contact);
+    }
+
+    @Synchronized
     public void update(String name, String phone) {
         noteBook.update(name, phone);
     }
