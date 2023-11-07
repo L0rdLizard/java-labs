@@ -9,8 +9,8 @@ import lombok.SneakyThrows;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletUpdate", value = "/contacts/update")
-public class ServletUpdate extends HttpServlet {
+@WebServlet(name = "ServletSearch", value = "/contacts/search")
+public class ServletSearch extends HttpServlet {
     private NoteBookStore store;
 
     @SneakyThrows
@@ -20,19 +20,15 @@ public class ServletUpdate extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        getServletContext().getRequestDispatcher("/form.jsp").forward(request, response);
         getServletContext().getRequestDispatcher("/formSearch.jsp").forward(request, response);
     }
 
-    // Method to handle POST request from the form
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("name");
-        String phone = request.getParameter("phone");
-        store.update(name, phone);
-
-
-        getServletContext().getRequestDispatcher("/info.jsp").forward(request, response);
-        store.save();
+        request.setAttribute("name", name);
+        request.setAttribute("contacts", store.getAddressBook().getContacts());
+        getServletContext().getRequestDispatcher("/searchList.jsp").forward(request, response);
+//        store.save();
     }
 
     public void destroy() {

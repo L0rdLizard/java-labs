@@ -12,6 +12,7 @@ public class NoteBookStore {
     private static volatile NoteBookStore instance;
 
     private NoteBook noteBook = new NoteBook();
+
     @ToString.Exclude
     private final File database;
 

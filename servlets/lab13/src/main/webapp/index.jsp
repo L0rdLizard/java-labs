@@ -44,6 +44,11 @@
             Add New Contact
         </a>
     </div>
+    <div>
+        <a href="${pageContext.request.contextPath}/contacts/search">
+            Search Contact
+        </a>
+    </div>
 </div>
 </body>
 </html>
