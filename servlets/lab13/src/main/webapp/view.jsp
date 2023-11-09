@@ -1,38 +1,55 @@
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
-
-<%--<!doctype html>--%>
+<%--<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>--%>
+<%--<!DOCTYPE html>--%>
 <%--<html>--%>
 <%--<head>--%>
-<%--    <meta charset="UTF-8"/>--%>
-<%--    <title>Address Book</title>--%>
-<%--    <script src="https://cdn.tailwindcss.com"></script>--%>
+<%--  <title>JSP - Hello World</title>--%>
 <%--</head>--%>
-<%--<body class="bg-slate-900 text-slate-100">--%>
-<%--<div class="container mx-auto max-w-6xl p-4">--%>
-<%--    <h1 class="text-3xl font-bold text-slate-100 text-center my-4">--%>
-<%--        Your Address Book--%>
-<%--    </h1>--%>
-
-<%--    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">--%>
-<%--        <c:forEach var="contact" items="${contacts}">--%>
-<%--            <div class="bg-slate-800 rounded-lg p-4 shadow-md">--%>
-<%--                <p class="text-xl font-semibold">${contact.getName()}</p>--%>
-<%--                <ul class="list-disc ml-5 mt-2">--%>
-<%--                    <c:forEach var="phone" items="${contact.getPhones()}">--%>
-<%--                        <li class="text-slate-400">${phone}</li>--%>
-<%--                    </c:forEach>--%>
-<%--                </ul>--%>
-<%--            </div>--%>
-<%--        </c:forEach>--%>
-<%--    </div>--%>
-
-<%--    <div class="grid grid-flow-col justify-stretch md:flex md:justify-center">--%>
-<%--        <a href="${pageContext.request.contextPath}/contacts/update"--%>
-<%--           class="block rounded-md bg-blue-500 text-white font-bold text-center mt-4 py-2 px-4">--%>
-<%--            Add New Contact--%>
-<%--        </a>--%>
-<%--    </div>--%>
-<%--</div>--%>
+<%--<body>--%>
+<%--<h1><%= "Hello World!" %></h1>--%>
+<%--<br/>--%>
+<%--<a href="hello-servlet">Hello Servlet</a>--%>
 <%--</body>--%>
 <%--</html>--%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Address Book</title>
+</head>
+<body>
+<div class="container">
+    <h1>
+        Your Address Book
+    </h1>
+
+    <div>
+        <c:forEach var="contact" items="${contacts}">
+            <div>
+                <p>${contact.getName()}</p>
+                <ul>
+                    <c:forEach var="phone" items="${contact.getPhones()}">
+                        <li>${phone}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:forEach>
+    </div>
+
+    <div>
+        <a href="${pageContext.request.contextPath}/contacts/update">
+            Add New Contact
+        </a>
+    </div>
+    <div>
+        <a href="${pageContext.request.contextPath}/contacts/search">
+            Search Contact
+        </a>
+    </div>
+</div>
+</body>
+</html>
+

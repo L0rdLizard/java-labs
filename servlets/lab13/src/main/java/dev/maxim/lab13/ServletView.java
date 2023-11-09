@@ -19,7 +19,7 @@ public class ServletView extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("contacts", store.getAddressBook().getContacts());
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/view.jsp").forward(request, response);
     }
 
     public void destroy() {
