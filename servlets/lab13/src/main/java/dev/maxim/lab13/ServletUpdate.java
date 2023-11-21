@@ -21,7 +21,7 @@ public class ServletUpdate extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         getServletContext().getRequestDispatcher("/form.jsp").forward(request, response);
-        getServletContext().getRequestDispatcher("/formSearch.jsp").forward(request, response);
+//        getServletContext().getRequestDispatcher("/formSearch.jsp").forward(request, response);
     }
 
     // Method to handle POST request from the form
