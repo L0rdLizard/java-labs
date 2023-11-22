@@ -12,36 +12,34 @@ import java.io.IOException;
 
 @WebServlet(name = "AddServlet", value = "/add")
 public class AddServlet extends HttpServlet {
-    private AdBoardStore store;
+    private PostListStore store;
 
     @SneakyThrows
     public void init() {
-        store = AdBoardStore.getInstance("db.json");
+        store = PostListStore.getInstance();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        HttpSession session = request.getSession(false);  // false = do not create new session
+        HttpSession session = request.getSession(false);
 
-        if (session != null) {
+        if (session != null && session.getAttribute("username") != null) {
             getServletContext().getRequestDispatcher("/add.jsp").forward(request, response);
         } else {
             returnUnauthorized(request, response);
         }
     }
 
-    // Method to handle POST request from the form
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession(false);
 
-        if (session != null) {
+        if (session != null && session.getAttribute("username") != null) {
             String user = (String) session.getAttribute("username");
             String title = request.getParameter("title");
-            String image = request.getParameter("image");
             String desc = request.getParameter("desc");
 
-            store.add(new Advertisement(title, image, desc, user));
-
-            request.setAttribute("status", "Ad was added successfully!");
+            store.add(new Post(title, desc, user));
+            System.out.println(store);
+            request.setAttribute("status", "Post was added successfully!");
             request.setAttribute("message", "Go to main page and check!");
             getServletContext().getRequestDispatcher("/info.jsp").forward(request, response);
         } else {

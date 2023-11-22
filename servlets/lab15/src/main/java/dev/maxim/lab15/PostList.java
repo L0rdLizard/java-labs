@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
-public class AdBoard {
-    private ArrayList<Advertisement> ads = new ArrayList<>();
+public class PostList {
+    private ArrayList<Post> ads = new ArrayList<>();
 
-    public void add(Advertisement ad) {
+    public void add(Post ad) {
         ads.add(ad);
     }
 }

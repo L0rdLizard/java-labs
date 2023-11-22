@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User {
     private String username;
-    private String password;  // хранить пароли в plaintext это круто!
+    private String password;  //
 
     public User(String name) {
         this.username = name;

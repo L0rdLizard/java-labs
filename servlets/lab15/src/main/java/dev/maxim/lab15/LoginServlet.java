@@ -14,7 +14,7 @@ public class LoginServlet extends HttpServlet {
     private UserStore userStore;
 
     public void init() {
-        userStore = UserStore.getInstance("users.json");
+        userStore = UserStore.getInstance("users15.txt");
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -32,13 +32,12 @@ public class LoginServlet extends HttpServlet {
         if (userStore.check(new User(username, password))) {
             HttpSession session = request.getSession(false);
             if (session != null) session.setAttribute("username", username);
-            // hehe
+
             status = "Login success!";
-            message = "Now you can post your ads :)";
+            message = "Now you can post";
         } else {
-            // not hehe
             status = "Login failed!";
-            message = "Incorrect username or password :(";
+            message = "Incorrect username or password!";
         }
 
         request.setAttribute("status", status);

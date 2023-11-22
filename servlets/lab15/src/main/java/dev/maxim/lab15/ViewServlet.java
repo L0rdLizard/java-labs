@@ -5,25 +5,29 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.SneakyThrows;
 
 import java.io.IOException;
 
-@WebServlet(name = "ViewAddressBook", value = "/contacts")
+@WebServlet(name = "ViewAddressBook", value = "/")
 public class ViewServlet extends HttpServlet {
-    private AdBoardStore store;
+    private PostListStore store;
 
     @SneakyThrows
     public void init() {
-        store = AdBoardStore.getInstance("db.json");
-        store.load();
+        store = PostListStore.getInstance();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.setAttribute("ads", store.getAds());
+        request.setAttribute("posts", store.getAds());
+        HttpSession session = request.getSession(false);  // false = do not create new session
+        boolean loggedIn = session != null && session.getAttribute("username") != null;
+        request.setAttribute("login", loggedIn);
         getServletContext().getRequestDispatcher("/view.jsp").forward(request, response);
     }
 
     public void destroy() {
+
     }
 }

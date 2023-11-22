@@ -1,21 +1,17 @@
 package dev.maxim.lab15;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
 import lombok.Synchronized;
 import lombok.ToString;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class UserStore {
     private static volatile UserStore instance;
-
     private ArrayList<User> users = new ArrayList<>();
 
-    @ToString.Exclude
-    private final ObjectMapper objectMapper = new ObjectMapper();
+//    @ToString.Exclude
+//    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @ToString.Exclude
     private final File database;
@@ -46,17 +42,43 @@ public class UserStore {
         }
         return instance;
     }
-
     @Synchronized
-    public void load() throws IOException {
-        if (database.length() == 0) return;
-        CollectionType usersType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, User.class);
-        users = objectMapper.readValue(database, usersType);
+    public void load() {
+        users.clear();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("users15.txt"))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(" ");
+                if (parts.length == 2) {
+                    String username = parts[0];
+                    String password = parts[1];
+                    User user = new User(username, password);
+                    users.add(user);
+                } else {
+                    System.out.println("Некорректный формат строки: " + line);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (User user : users) {
+            System.out.println("Username: " + user.getUsername() + ", Password: " + user.getPassword());
+        }
     }
 
     @Synchronized
-    public void save() throws IOException {
-        objectMapper.writeValue(database, users);
+    public void save() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("users15.txt"))) {
+            for (User user : users) {
+                writer.write(user.getUsername() + " " + user.getPassword());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Synchronized
