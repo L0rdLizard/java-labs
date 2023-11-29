@@ -8,9 +8,9 @@ import java.util.ArrayList;
 @Data
 @NoArgsConstructor
 public class PostList {
-    private ArrayList<Post> ads = new ArrayList<>();
+    private ArrayList<Post> posts = new ArrayList<>();
 
     public void add(Post ad) {
-        ads.add(ad);
+        posts.add(ad);
     }
 }

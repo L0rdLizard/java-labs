@@ -29,7 +29,7 @@ public class PostListStore {
 
     @Synchronized
     public ArrayList<Post> getAds() {
-        return board.getAds();
+        return board.getPosts();
     }
 
     @Synchronized
