@@ -12,11 +12,22 @@ import java.io.IOException;
 @WebServlet(name = "LogoutServlet", value = "/logout")
 public class LogoutServlet extends HttpServlet {
     public void init() {
+        System.out.println("logout1");
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        HttpSession session = request.getSession(false);
+//        if (session != null) session.invalidate();
+//
+//        request.setAttribute("status", "Logout success!");
+//        request.setAttribute("message", "You are successfully logged out!");
+//        getServletContext().getRequestDispatcher("/info.jsp").forward(request, response);
+        System.out.println("logout2");
         HttpSession session = request.getSession(false);
-        if (session != null) session.invalidate();
+        if (session != null) {
+            session.removeAttribute("user");
+            session.invalidate();
+        }
 
         request.setAttribute("status", "Logout success!");
         request.setAttribute("message", "You are successfully logged out!");

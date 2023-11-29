@@ -36,4 +36,8 @@ public class PostListStore {
     public void add(Post ad) {
         board.add(ad);
     }
+
+    public PostList getBoard(){
+        return board;
+    }
 }
