@@ -1,0 +1,3 @@
+root root
+admin admin
+maxim 1234
