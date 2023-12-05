@@ -93,6 +93,7 @@ public class ServerChat2 {
             Socket clientSocket = serverSocket.accept();
             Connection connection = new Connection(clientSocket);
             connections.add(connection);
+            System.out.println(connections);
             connection.start();
         }
     }
@@ -116,7 +117,12 @@ public class ServerChat2 {
                 for (Connection connection : connections) {
                     connection.out.println(name + " joined");
                 }
-
+                while (true){
+                    Thread.sleep(10000);
+                    for (Connection connection : connections) {
+                        connection.out("Make America greate again!")
+                    }
+                }
                 while (true) {
                     String message = in.readLine();
                     if (message.equals("@exit")) {
@@ -149,6 +155,11 @@ public class ServerChat2 {
                             }
                         }
                     } else {
+                        if (message.startsWith("hello")){
+                            for (Connection connection : connections) {
+                                connection.out("Hi to everyone!")
+                            }
+                        }
                         for (Connection connection : connections) {
                             if (!(connection.name.equals(name))) {
                                 connection.out.println(name + ": " + message);
