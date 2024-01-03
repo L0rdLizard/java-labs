@@ -1,0 +1,3 @@
+rootProject.name = "java-labs"
+include "servlets:lab13"
+include "servlets:lab15"
